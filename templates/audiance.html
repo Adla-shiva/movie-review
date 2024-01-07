@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Reviews</title> 
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+        rel="stylesheet"
+        />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <div id="header-content">
+            <div id="title-icon">
+                <h1>Movie Reviews</h1>
+                <img src="https://img.freepik.com/free-vector/cinema-realistic-poster-with-illuminated-bucket-popcorn-drink-3d-glasses-reel-tickets-blue-background-with-tapes-vector-illustration_1284-77070.jpg" alt="Movie Icon">
+            </div>
+            <div id="search-bar">
+                <form action="searchuser" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Search for movies..." name="searchmovies">
+               <button id="search-button">Search</button>
+                </form>
+            </div>
+        </div>
+    {% comment %} <div id="actions-bar">
+        <div id="crud-buttons">
+            <a href="create">
+                <button id="create-button" >Create</button>
+            </a>
+            <a href="edit">
+                <button id="Logout-button" >Logout</button>
+            </a>
+            <a href="login">
+                <button id="SignIn-button" >SignIn</button>
+            </a>
+            <a href="register">
+                <button id="SignUp-button" >SignUp</button>
+            </a>
+        </div>
+    </div> {% endcomment %}
+</header>
+
+    <div id="content-container">
+        {% for i in post %}
+        <div class="movie-frame">
+           
+            <img src="{{ i.image.url }}" alt="Movie 2">
+            <div class="movie-info">
+                <h3 style="word-wrap: break-word;">{{i.title}}</h3>
+                <p style="word-wrap: break-word;">{{i.description }}</p>
+                <p>Rating:{{i.rating}}</p>
+                <p>Release Date:{{i.date}}</p>
+                <p style="word-wrap: break-word;">Genre:{{i.genre}}</p>
+                <p>{{i.id}}</p>
+                {% comment %} <div class="crud-buttons">
+                    <a href="{% url 'update' pk=i.id %}">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="{% url 'delete' i.id %}">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                </div> {% endcomment %}
+               
+            </div> 
+        </div>
+        {% endfor %}
+    </div>
+     {% comment %} bootstrap footer {% endcomment %}
+     <footer class="text-center bg-body-tertiary">
+        <!-- Grid container -->
+        <div class="container pt-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating btn-lg text-body m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating btn-lg text-body m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating btn-lg text-body m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating btn-lg text-body m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating btn-lg text-body m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <!-- Github -->
+            <a
+              data-mdb-ripple-init
+              class="btn btn-link btn-floating btn-lg text-body m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2024 Copyright:
+            <a class="text-body" href="#">Movieshub.com</a>
+          </div>
+        <!-- Copyright -->
+      </footer>
+    {% comment %} end {% endcomment %}
+    <script>
+       
+        import { Ripple, initMDB } from "mdb-ui-kit";
+    
+        initMDB({ Ripple });
+        </script>
+           
+            <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
+            ></script>
+
+    
+</body>
+</html>
+
